@@ -143,11 +143,26 @@ class AuditIntelligenceApp:
         </style>
         """, unsafe_allow_html=True)
         
+        # Initialize session state
+        self._initialize_session_state()
+        
         # Header
         st.markdown('<h1 class="main-header">AI Audit Intelligence</h1>', unsafe_allow_html=True)
         
         # Main content (sidebar removed)
         self._create_main_content()
+    
+    def _initialize_session_state(self):
+        """Initialize session state variables"""
+        # Initialize agent status tracking
+        if 'agent_status' not in st.session_state:
+            st.session_state.agent_status = {
+                'web_scraper': 'idle',
+                'internal_audit': 'idle', 
+                'external_conference': 'idle',
+                'quality_systems': 'idle',
+                'sop': 'idle'
+            }
         
     def _create_main_content(self):
         """Create the main content area"""
